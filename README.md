@@ -11,7 +11,7 @@ Additionally, two directories have been added:
 ## Inventories
 
 - **servers.yml** – contains the names and addresses of the hosts or servers.  
-- **services.yml** – contains the names and grouping of services such as `mon`, `osd`, and others.
+- **inventories.yml** – contains the names and grouping of services such as `mon`, `osd`, and others.
 
 ## Execution
 
