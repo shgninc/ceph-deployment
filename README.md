@@ -24,5 +24,7 @@ scripts/add_mon.sh
 scripts/add_mgr.sh
 scripts/add_osd.sh
 scripts/add_pool.sh
+```
+
 
 [cephadm-ansible]: https://github.com/ceph/cephadm-ansible
