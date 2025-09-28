@@ -1,0 +1,33 @@
+---
+- name: add monitor to cluster
+  hosts: osd
+  become: true
+  gather_facts: true
+  tasks:
+    - name: set current labels for mon hosts
+      command: ceph orch host label add {{ ansible_facts['hostname'] }} osd
+      delegate_to: localhost
+
+    - name: Apply OSD service spec
+      ceph_orch_apply:
+        docker: true
+        spec: |
+          service_type: osd
+          service_id: osd
+          placement:
+            label: osd
+          spec:
+            data_devices:
+              all: true
+      delegate_to: localhost
+
+    - name: list osd in the cluster
+      when: inventory_hostname in groups['admin']
+      ansible.builtin.shell:
+        cmd: ceph orch ps --daemon_type mon
+      register: host_list
+
+    - name: print current list of monitors
+      when: inventory_hostname in groups['admin']
+      debug:
+        msg: "{{ host_list.stdout }}"

@@ -1,0 +1,16 @@
+all:
+  children:
+    servers:
+      hosts:
+        monitoring:
+          ansible_host: 192.168.33.55
+        localhost:
+          ansible_connection: local
+        ceph1:
+          ansible_host: 192.168.33.37
+        ceph2:
+          ansible_host: 192.168.33.43
+        ceph3:
+          ansible_host: 192.168.33.247
+        ceph04:
+          ansible_host: 192.168.33.51

@@ -1,0 +1,23 @@
+---
+- name: Pool creation
+  hosts: osd
+  become: true
+  tasks:
+    - name: Create a pool
+      ceph.automation.ceph_pool:
+        # docker: true
+        name: pool01
+        state: present
+        pool_type: "erasure"
+      delegate_to: localhost
+
+    - name: list osd in the cluster
+      when: inventory_hostname in groups['admin']
+      ansible.builtin.shell:
+        cmd: ceph orch ps --daemon_type mon
+      register: host_list
+
+    - name: print current list of monitors
+      when: inventory_hostname in groups['admin']
+      debug:
+        msg: "{{ host_list.stdout }}"

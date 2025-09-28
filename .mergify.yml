@@ -1,0 +1,34 @@
+pull_request_rules:
+  - name: backport squid
+    conditions:
+      - label=backport-squid
+    actions:
+      backport:
+        branches:
+          - squid
+  - actions:
+      backport:
+        branches:
+          - reef
+    conditions:
+      - label=backport-reef
+    name: backport reef
+  - actions:
+      backport:
+        branches:
+          - quincy
+    conditions:
+      - label=backport-quincy
+    name: backport quincy
+  - actions:
+      backport:
+        branches:
+          - pacific
+    conditions:
+      - label=backport-pacific
+    name: backport pacific
+commands_restrictions:
+  backport:
+    conditions:
+      - base=devel
+      - number<0

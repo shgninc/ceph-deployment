@@ -1,0 +1,31 @@
+---
+- name: add monitor to cluster
+  hosts: mon
+  become: true
+  gather_facts: true
+  tasks:
+    - name: set current labels for mon hosts
+      command: ceph orch host label add {{ ansible_facts['hostname'] }} mon
+      delegate_to: localhost
+    - name: Apply MON service with placement on 3 hosts
+      ceph_orch_apply:
+        docker: true
+        spec: |
+          service_type: mon
+          service_id: mon
+          placement:
+            label: mon
+          networks:
+            - 192.168.33.0/24
+      delegate_to: localhost
+
+    - name: list monitors in the cluster
+      when: inventory_hostname in groups['admin']
+      ansible.builtin.shell:
+        cmd: ceph orch ps --daemon_type mon
+      register: host_list
+
+    - name: print current list of monitors
+      when: inventory_hostname in groups['admin']
+      debug:
+        msg: "{{ host_list.stdout }}"

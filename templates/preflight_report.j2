@@ -1,0 +1,30 @@
+==================================================
+               **  Preflight Check Report **
+==================================================
+
+ System Checks
+--------------------------------------------------
+{% for item in preflight_results %}
+- {{ item['Check'] }}: {% if item['Result'] == 'PASS' %}✅ Passed{% elif item['Result'] == 'FAIL' %}❌ Failed{% else %}ℹ️ INFO{% endif %}
+
+{% if item['Result'] == 'FAIL' or item['Result'] == 'INFO' %}
+    - Reason: {{ item['Reason'] }}
+{% endif %}
+
+{% endfor %}
+==================================================
+** Summary **
+--------------------------------------------------
+{% if preflight_failures | length > 0 %}
+ℹ️  The following checks did not meet the recommended configuration:
+
+{% for item in preflight_failures %}
+   - {{ item }}
+{% endfor %}
+
+   These values differ from expected baselines and may impact Ceph performance.
+   Please review and adjust the system configuration.
+
+{% else %}
+✅ All critical checks meet the recommended values. System is ready for Ceph deployment.
+{% endif %}

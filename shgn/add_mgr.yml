@@ -1,0 +1,29 @@
+---
+- name: add manager to cluster
+  hosts: mon
+  become: true
+  gather_facts: true
+  tasks:
+    - name: set current labels for mgr hosts
+      command: ceph orch host label add {{ ansible_facts['hostname'] }} mgr
+      delegate_to: localhost
+    - name: Apply MGR service with placemen on mgr label
+      ceph_orch_apply:
+        docker: true
+        spec: |
+          service_type: mgr
+          service_id: mgr
+          placement:
+            label: mgr
+      delegate_to: localhost
+
+    - name: list managers in the cluster
+      when: inventory_hostname in groups['admin']
+      ansible.builtin.shell:
+        cmd: ceph orch ps --daemon_type mgr
+      register: host_list
+
+    - name: print current list of managers
+      when: inventory_hostname in groups['admin']
+      debug:
+        msg: "{{ host_list.stdout }}"

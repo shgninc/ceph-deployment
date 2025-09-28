@@ -1,0 +1,33 @@
+all:
+  vars:
+    ansible_user: root
+    ceph_origin: repository
+    ceph_repository: community
+    containerized_deployment: true
+  children:
+    monitoring:
+      hosts:
+        monitoring:
+          ansible_host: 192.168.33.55
+    admin:
+      hosts:
+        localhost:
+          ansible_connection: local
+          monitor_address: 192.168.33.37
+
+    osd:
+      hosts:
+        ceph2:
+          ansible_host: 192.168.33.43
+        ceph3:
+          ansible_host: 192.168.33.247
+        ceph04:
+          ansible_host: 192.168.33.51
+    mon:
+      hosts:
+        ceph2:
+          ansible_host: 192.168.33.43
+        ceph3:
+          ansible_host: 192.168.33.247
+        localhost:
+          ansible_connection: local

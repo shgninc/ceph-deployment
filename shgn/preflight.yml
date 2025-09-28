@@ -1,0 +1,23 @@
+---
+- name: preflight
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: install required packages
+      apt:
+        pkg:
+         - cephadm 
+         - htop
+         - screen
+         - python3 
+         - python3-pip 
+         - git 
+         - sshpass 
+         - lvm2 
+         - curl
+         - ceph
+         - ansible
+        update_cache: true
+        state: latest
+      ignore_errors: true
