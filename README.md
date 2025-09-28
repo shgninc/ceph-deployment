@@ -1,6 +1,7 @@
 # ceph-deployment
 
 This project is based on [cephadm-ansible], but with some modifications to make it work on **Debian**.
+At first try to read the [MAINREADME] and then continue here.
 
 Additionally, two directories have been added:  
 
@@ -28,3 +29,4 @@ scripts/add_pool.sh
 
 
 [cephadm-ansible]: https://github.com/ceph/cephadm-ansible
+[MAINREADME]: https://github.com/shgninc/ceph-deployment/blob/main/MAINREADME.md
