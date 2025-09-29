@@ -3,6 +3,8 @@
 This project is based on [cephadm-ansible], but with some modifications to make it work on **Debian**.
 At first try to read the [MAINREADME] and then continue here.
 
+In The Begining, edit the inventory.yml file, and define the **MON, OSD, MGR...** servers, and edit servers.yml file to define host address and other ansible variables.
+
 Additionally, two directories have been added:  
 
 - **shgn** – contains the required playbooks.  
