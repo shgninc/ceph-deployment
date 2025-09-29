@@ -18,13 +18,13 @@ Additionally, two directories have been added:
 The order of execution is as follows. All scripts should be executed from the **root directory of the project**:
 
 ```bash
-scripts/execPreflight.sh
+scripts/execPreflight.sh [host_name]
 scripts/makeBootstrap.sh
-scripts/add_host.sh
-scripts/add_mon.sh
-scripts/add_mgr.sh
-scripts/add_osd.sh
-scripts/add_pool.sh
+scripts/add_host.sh [host_name]
+scripts/add_mon.sh [host_name]
+scripts/add_mgr.sh [host_name]
+scripts/add_osd.sh [host_name]
+scripts/add_pool.sh [host_name]
 ```
 
 
