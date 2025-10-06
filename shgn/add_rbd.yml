@@ -1,0 +1,20 @@
+---
+- name: RBD creation
+  hosts: osd
+  become: true
+  tasks:
+   - name: List RBD images in pool
+      command: rbd ls {{ pool_name }}
+      register: rbd_list
+
+    - name: Show created RBD image
+      debug:
+        msg: "RBD images: {{ rbd_list.stdout_lines }}"
+ 
+    #    - name: Create a pool
+    #      ceph.automation.ceph_pool:
+    #        # docker: true
+    #        name: pool01
+    #        state: present
+    #        pool_type: "erasure"
+    #      delegate_to: localhost

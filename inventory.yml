@@ -13,21 +13,17 @@ all:
       hosts:
         localhost:
           ansible_connection: local
-          monitor_address: 192.168.33.37
+          monitor_address: 192.168.33.248
 
     osd:
       hosts:
         ceph2:
-          ansible_host: 192.168.33.43
         ceph3:
-          ansible_host: 192.168.33.247
         ceph04:
-          ansible_host: 192.168.33.51
+        ceph05:
     mon:
       hosts:
         ceph2:
-          ansible_host: 192.168.33.43
         ceph3:
-          ansible_host: 192.168.33.247
         localhost:
           ansible_connection: local

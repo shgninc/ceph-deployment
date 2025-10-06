@@ -10,5 +10,6 @@ fi
 
 ansible-playbook -i servers.yml -i inventory.yml \
 	./shgn/preflight.yml $limit_opt
+echo "+++++++ Main Preflight ++++++++++"
 ansible-playbook -i servers.yml -i inventory.yml \
 	./cephadm-preflight.yml $limit_opt

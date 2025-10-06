@@ -7,6 +7,7 @@
     - name: set current labels for mon hosts
       command: ceph orch host label add {{ ansible_facts['hostname'] }} mon
       delegate_to: localhost
+
     - name: Apply MON service with placement on 3 hosts
       ceph_orch_apply:
         docker: true

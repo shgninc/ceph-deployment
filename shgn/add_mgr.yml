@@ -7,6 +7,7 @@
     - name: set current labels for mgr hosts
       command: ceph orch host label add {{ ansible_facts['hostname'] }} mgr
       delegate_to: localhost
+
     - name: Apply MGR service with placemen on mgr label
       ceph_orch_apply:
         docker: true

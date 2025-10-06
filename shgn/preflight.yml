@@ -10,14 +10,16 @@
          - cephadm 
          - htop
          - screen
-         - python3 
+         - python3
          - python3-pip 
+         - python3-systemd
+         - fail2ban
          - git 
          - sshpass 
          - lvm2 
          - curl
          - ceph
-         - ansible
+           #- ansible
         update_cache: true
         state: latest
       ignore_errors: true

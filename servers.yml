@@ -7,10 +7,12 @@ all:
         localhost:
           ansible_connection: local
         ceph1:
-          ansible_host: 192.168.33.37
+          ansible_host: 192.168.33.248
         ceph2:
-          ansible_host: 192.168.33.43
+          ansible_host: 192.168.33.92
         ceph3:
-          ansible_host: 192.168.33.247
+          ansible_host: 192.168.33.99
         ceph04:
-          ansible_host: 192.168.33.51
+          ansible_host: 192.168.33.213
+        ceph05:
+          ansible_host: 192.168.33.198
